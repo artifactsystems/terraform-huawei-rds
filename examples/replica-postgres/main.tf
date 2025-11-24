@@ -114,7 +114,7 @@ module "replica" {
 ################################################################################
 
 module "vpc" {
-  source = "../../../terraform-huawei-vpc"
+  source = "github.com/artifactsystems/terraform-huawei-vpc?ref=v1.0.0"
 
   name = local.name
   cidr = local.vpc_cidr
@@ -128,7 +128,7 @@ module "vpc" {
 }
 
 module "security_group" {
-  source = "../../../terraform-huawei-security-group"
+  source = "github.com/artifactsystems/terraform-huawei-security-group?ref=v1.0.0"
 
   name        = local.name
   description = "Security group for ${local.name} RDS replica example"

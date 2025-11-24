@@ -96,7 +96,7 @@ module "db" {
 ################################################################################
 
 module "lts" {
-  source = "../../../terraform-huawei-lts"
+  source = "github.com/artifactsystems/terraform-huawei-lts?ref=v1.0.0"
 
   group_name  = "${local.name}-rds-logs"
   ttl_in_days = 7
@@ -118,7 +118,7 @@ module "lts" {
 }
 
 module "vpc" {
-  source = "../../../terraform-huawei-vpc"
+  source = "github.com/artifactsystems/terraform-huawei-vpc?ref=v1.0.0"
 
   name = local.name
   cidr = local.vpc_cidr
@@ -132,7 +132,7 @@ module "vpc" {
 }
 
 module "security_group" {
-  source = "../../../terraform-huawei-security-group"
+  source = "github.com/artifactsystems/terraform-huawei-security-group?ref=v1.0.0"
 
   name        = local.name
   description = "Complete MySQL example security group"

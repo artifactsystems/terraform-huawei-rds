@@ -114,7 +114,7 @@ module "db" {
 
 # KMS Key for Disk Encryption
 module "dew" {
-  source = "../../../terraform-huawei-dew"
+  source = "github.com/artifactsystems/terraform-huawei-dew?ref=v1.0.0"
 
   key_alias   = "${local.name}-disk-encryption"
   description = "KMS key for RDS disk encryption"
@@ -129,7 +129,7 @@ module "dew" {
   tags = local.tags
 }
 module "vpc" {
-  source = "../../../terraform-huawei-vpc"
+  source = "github.com/artifactsystems/terraform-huawei-vpc?ref=v1.0.0"
 
   name = local.name
   cidr = local.vpc_cidr
@@ -145,7 +145,7 @@ module "vpc" {
 }
 
 module "security_group" {
-  source = "../../../terraform-huawei-security-group"
+  source = "github.com/artifactsystems/terraform-huawei-security-group?ref=v1.0.0"
 
   name        = local.name
   description = "Complete PostgreSQL HA example security group"
