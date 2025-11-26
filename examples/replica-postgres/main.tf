@@ -145,4 +145,3 @@ module "security_group" {
 
   tags = local.tags
 }
-

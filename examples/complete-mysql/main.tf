@@ -47,8 +47,6 @@ module "db" {
   backup_window           = "03:00-04:00"
   backup_retention_period = 7
 
-  skip_final_snapshot = true
-
   create_mysql_objects = true
   db_name              = "completemysql"
   db_description       = "Complete MySQL example database"
@@ -85,9 +83,6 @@ module "db" {
   db_instance_tags = {
     Sensitive  = "high"
     Monitoring = "enabled"
-  }
-  db_parameter_group_tags = {
-    Sensitive = "low"
   }
 }
 

@@ -117,4 +117,3 @@ resource "huaweicloud_rds_sql_audit" "this" {
 
   depends_on = [huaweicloud_rds_instance.this]
 }
-

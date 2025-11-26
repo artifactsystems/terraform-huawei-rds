@@ -110,4 +110,3 @@ output "kms_key_id" {
   description = "The KMS key ID used for disk encryption"
   value       = module.dew.key_id
 }
-

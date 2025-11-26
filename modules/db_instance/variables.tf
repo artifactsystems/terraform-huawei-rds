@@ -328,4 +328,3 @@ variable "sql_audit_reserve_auditlogs" {
   type        = bool
   default     = false
 }
-

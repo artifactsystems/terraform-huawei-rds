@@ -157,11 +157,11 @@ output "pg_plugins" {
   description = "Map of PostgreSQL plugins created on databases"
   value = {
     for key, plugin in huaweicloud_rds_pg_plugin.this : key => {
-      id                      = plugin.id
-      name                    = plugin.name
-      database_name           = plugin.database_name
-      version                 = plugin.version
-      description             = plugin.description
+      id                       = plugin.id
+      name                     = plugin.name
+      database_name            = plugin.database_name
+      version                  = plugin.version
+      description              = plugin.description
       shared_preload_libraries = plugin.shared_preload_libraries
     }
   }
@@ -171,10 +171,10 @@ output "pg_plugin_parameters" {
   description = "Map of PostgreSQL plugin parameters configured at instance level"
   value = {
     for name, param in huaweicloud_rds_pg_plugin_parameter.this : name => {
-      id              = param.id
-      name            = param.name
-      values          = param.values
-      default_values  = param.default_values
+      id               = param.id
+      name             = param.name
+      values           = param.values
+      default_values   = param.default_values
       restart_required = param.restart_required
     }
   }
@@ -280,4 +280,3 @@ output "db_instance_sql_audit_keep_days" {
   description = "SQL audit log retention period in days"
   value       = try(module.db_instance[0].sql_audit_keep_days, null)
 }
-

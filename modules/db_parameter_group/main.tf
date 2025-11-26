@@ -12,5 +12,3 @@ resource "huaweicloud_rds_parametergroup" "this" {
     create_before_destroy = true
   }
 }
-
-

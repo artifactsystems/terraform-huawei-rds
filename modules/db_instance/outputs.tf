@@ -93,4 +93,3 @@ output "sql_audit_keep_days" {
   description = "SQL audit log retention period in days"
   value       = var.enable_sql_audit ? var.sql_audit_keep_days : null
 }
-

@@ -29,7 +29,7 @@ module "db" {
 
   engine         = "mysql"
   engine_version = "8.0"
-  family         = "8.0"                      # DB parameter group
+  family         = "8.0"                     # DB parameter group
   instance_class = "rds.mysql.n1.large.2.ha" # HA flavor with .ha suffix
   # Note: For Primary/Standby, flavor must end with .ha
 
@@ -45,7 +45,7 @@ module "db" {
   vpc_id             = module.vpc.vpc_id
   subnet_id          = module.vpc.database_subnets[0] # Primary subnet
   security_group_id  = module.security_group.security_group_id
-  availability_zones  = local.azs # 2 AZs: [az1, az2] for Primary/Standby
+  availability_zones = local.azs # 2 AZs: [az1, az2] for Primary/Standby
 
   # HA Replication Mode
   # For MySQL: async (asynchronous) or semisync (semi-synchronous)
@@ -56,8 +56,6 @@ module "db" {
   maintenance_window      = "22:00-02:00"
   backup_window           = "03:00-04:00"
   backup_retention_period = 7
-
-  skip_final_snapshot = true
 
   create_mysql_objects = true
   db_name              = "completemysql"
@@ -103,9 +101,6 @@ module "db" {
     Sensitive  = "high"
     Monitoring = "enabled"
     HA         = "primary-standby"
-  }
-  db_parameter_group_tags = {
-    Sensitive = "low"
   }
 }
 
@@ -185,4 +180,3 @@ module "security_group" {
 
   tags = local.tags
 }
-

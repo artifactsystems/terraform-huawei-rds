@@ -148,4 +148,3 @@ output "lts_log_stream_ids" {
   description = "Map of LTS log stream IDs"
   value       = module.lts.log_stream_ids
 }
-

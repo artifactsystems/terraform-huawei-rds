@@ -8,12 +8,6 @@ variable "create" {
   default     = true
 }
 
-variable "region" {
-  description = "The Huawei Cloud region where resources will be created. If not specified, the region configured in the provider will be used"
-  type        = string
-  default     = null
-}
-
 variable "tags" {
   description = "A mapping of tags to assign to all resources"
   type        = map(string)
@@ -22,12 +16,6 @@ variable "tags" {
 
 variable "db_instance_tags" {
   description = "Additional tags for the DB instance"
-  type        = map(string)
-  default     = {}
-}
-
-variable "db_parameter_group_tags" {
-  description = "Additional tags for the DB parameter group"
   type        = map(string)
   default     = {}
 }
@@ -111,12 +99,6 @@ variable "port" {
   default     = null
 }
 
-variable "publicly_accessible" {
-  description = "Whether the DB instance is publicly accessible. Currently not supported by Huawei Cloud RDS, included for future compatibility"
-  type        = bool
-  default     = false
-}
-
 ################################################################################
 # Storage
 ################################################################################
@@ -171,28 +153,10 @@ variable "backup_period" {
   default     = null
 }
 
-variable "skip_final_snapshot" {
-  description = "Determines whether a final DB snapshot is created before the DB instance is deleted. If true, no snapshot is created. If false, a snapshot is created before deletion"
-  type        = bool
-  default     = false
-}
-
-variable "final_snapshot_identifier_prefix" {
-  description = "The prefix for the final snapshot name when the instance is destroyed. Final snapshot will be named as '{prefix}-{identifier}-{timestamp}'"
-  type        = string
-  default     = "final"
-}
-
 variable "maintenance_window" {
   description = "The maintenance window for the DB instance. Format: 'HH:MM-HH:MM'. Example: '02:00-06:00'. If not specified, Huawei Cloud assigns a default window"
   type        = string
   default     = null
-}
-
-variable "apply_immediately" {
-  description = "Specifies whether any database modifications are applied immediately or during the next maintenance window"
-  type        = bool
-  default     = false
 }
 
 ################################################################################
@@ -241,21 +205,9 @@ variable "parameter_group_id" {
   default     = null
 }
 
-variable "parameter_group_skip_destroy" {
-  description = "Set to true if you do not wish the parameter group to be deleted at destroy time, and instead just remove the parameter group from the Terraform state"
-  type        = bool
-  default     = false
-}
-
 ################################################################################
 # MySQL-specific Settings
 ################################################################################
-
-variable "character_set_name" {
-  description = "The character set name to use for DB encoding in MySQL instances. Common values: 'utf8', 'utf8mb4'. This can only be set on creation"
-  type        = string
-  default     = null
-}
 
 variable "lower_case_table_names" {
   description = "MySQL lower_case_table_names parameter. Valid values: '0' (case-sensitive), '1' (case-insensitive, default). This is a ForceNew parameter and requires instance recreation if changed"
@@ -807,4 +759,3 @@ variable "sql_audit_reserve_auditlogs" {
   type        = bool
   default     = false
 }
-

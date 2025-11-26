@@ -15,5 +15,3 @@ output "datastore" {
     version = var.datastore_version
   }
 }
-
-

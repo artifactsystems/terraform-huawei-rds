@@ -48,8 +48,6 @@ module "db" {
   backup_window           = "03:00-04:00"
   backup_retention_period = 7
 
-  skip_final_snapshot = true
-
   create_pg_objects = true
   db_name           = "completedb"
   db_description    = "Complete PostgreSQL example database"
@@ -57,7 +55,7 @@ module "db" {
   user_password     = "YourPassword123!"
 
   parameters = {
-    max_connections        = "200"
+    max_connections          = "200"
     shared_preload_libraries = "pgaudit"
   }
 
@@ -76,7 +74,7 @@ module "db" {
 
   auto_minor_version_upgrade = true
 
-  enable_public_access = true
+  enable_public_access      = true
   eip_bandwidth_name        = "complete-postgres-eip"
   eip_bandwidth_size        = 10
   eip_bandwidth_charge_mode = "traffic"
@@ -85,9 +83,6 @@ module "db" {
   db_instance_tags = {
     Sensitive  = "high"
     Monitoring = "enabled"
-  }
-  db_parameter_group_tags = {
-    Sensitive = "low"
   }
 }
 
