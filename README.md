@@ -48,3 +48,9 @@ The following features may be added based on user demand:
 
 - [ ] **SQL Server Database Management** - Account, database, and privilege management for SQL Server (similar to MySQL/PostgreSQL support)
 - [ ] **MySQL Proxy** (`huaweicloud_rds_mysql_proxy`) - Connection pooling and read/write splitting for high-traffic scenarios
+
+## Contributing
+
+Report issues/questions/feature requests in the [issues](https://github.com/artifactsystems/terraform-huawei-rds/issues/new) section.
+
+Full contributing [guidelines are covered here](.github/CONTRIBUTING.md).
