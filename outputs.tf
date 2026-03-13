@@ -254,6 +254,30 @@ output "db_read_replica_subnet_id" {
 }
 
 ################################################################################
+# Read Replica EIP and Public Access
+################################################################################
+
+output "replica_eip_id" {
+  description = "The EIP ID associated with the read replica instance"
+  value       = try(huaweicloud_vpc_eip.replica[0].id, null)
+}
+
+output "replica_eip_address" {
+  description = "The public IP address of the read replica EIP"
+  value       = try(huaweicloud_vpc_eip.replica[0].address, null)
+}
+
+output "replica_eip_status" {
+  description = "The status of the read replica EIP"
+  value       = try(huaweicloud_vpc_eip.replica[0].status, null)
+}
+
+output "db_read_replica_public_endpoint" {
+  description = "The public connection endpoint in address:port format for read replica (when EIP is enabled)"
+  value       = try("${huaweicloud_vpc_eip.replica[0].address}:${module.db_read_replica[0].port}", null)
+}
+
+################################################################################
 # LTS (Log Tank Service) Outputs
 ################################################################################
 

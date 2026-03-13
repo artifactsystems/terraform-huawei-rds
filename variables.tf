@@ -686,6 +686,43 @@ variable "replica_tags" {
 }
 
 ################################################################################
+# Read Replica EIP (Public Access) Configuration
+################################################################################
+
+variable "enable_replica_public_access" {
+  description = <<-EOF
+    Whether to enable public access to the read replica instance by associating an EIP.
+    When enabled, an EIP will be created and associated with the read replica instance.
+  EOF
+  type        = bool
+  default     = false
+}
+
+variable "replica_eip_type" {
+  description = "The EIP type for replica. Possible values are 5_bgp (dynamic BGP) and 5_sbgp (static BGP). If not specified, uses the same as primary instance"
+  type        = string
+  default     = null
+}
+
+variable "replica_eip_bandwidth_name" {
+  description = "The bandwidth name for the replica EIP. If not specified, defaults to '{identifier}-replica-eip'"
+  type        = string
+  default     = null
+}
+
+variable "replica_eip_bandwidth_size" {
+  description = "The bandwidth size for replica EIP in Mbit/s. Value ranges from 1 to 300. If not specified, uses the same as primary instance"
+  type        = number
+  default     = null
+}
+
+variable "replica_eip_bandwidth_charge_mode" {
+  description = "Specifies whether the replica bandwidth is billed by traffic or bandwidth. Valid values are traffic and bandwidth. If not specified, uses the same as primary instance"
+  type        = string
+  default     = null
+}
+
+################################################################################
 # Timeouts
 ################################################################################
 

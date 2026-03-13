@@ -372,3 +372,34 @@ module "db_read_replica" {
 
   depends_on = [module.db_instance]
 }
+
+################################################################################
+# Read Replica EIP and Public Access
+################################################################################
+
+resource "huaweicloud_vpc_eip" "replica" {
+  count = local.create_read_replica && var.enable_replica_public_access ? 1 : 0
+
+  publicip {
+    type = coalesce(var.replica_eip_type, var.eip_type)
+  }
+
+  bandwidth {
+    share_type  = "PER"
+    name        = var.replica_eip_bandwidth_name != null ? var.replica_eip_bandwidth_name : "${var.identifier}-replica-eip"
+    size        = coalesce(var.replica_eip_bandwidth_size, var.eip_bandwidth_size)
+    charge_mode = coalesce(var.replica_eip_bandwidth_charge_mode, var.eip_bandwidth_charge_mode)
+  }
+
+  tags = merge(var.tags, var.replica_tags)
+}
+
+resource "huaweicloud_rds_instance_eip_associate" "replica" {
+  count = local.create_read_replica && var.enable_replica_public_access ? 1 : 0
+
+  instance_id  = module.db_read_replica[0].id
+  public_ip    = huaweicloud_vpc_eip.replica[0].address
+  public_ip_id = huaweicloud_vpc_eip.replica[0].id
+
+  depends_on = [module.db_read_replica]
+}
