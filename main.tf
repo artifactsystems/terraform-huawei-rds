@@ -82,6 +82,7 @@ module "db_instance" {
   backup_period     = var.backup_period
 
   ha_replication_mode = var.ha_replication_mode
+  time_zone           = var.time_zone
 
   param_group_id = local.parameter_group_name
 

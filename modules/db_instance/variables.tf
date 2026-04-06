@@ -252,6 +252,12 @@ variable "auto_renew" {
   default     = null
 }
 
+variable "time_zone" {
+  description = "Specifies the UTC time zone. Example: UTC+03:00"
+  type        = string
+  default     = null
+}
+
 variable "tags" {
   description = "A mapping of tags to assign to the RDS instance"
   type        = map(string)

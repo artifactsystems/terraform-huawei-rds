@@ -83,6 +83,12 @@ variable "ha_replication_mode" {
   default     = null
 }
 
+variable "time_zone" {
+  description = "Specifies the UTC time zone of the DB instance. Example: 'UTC+03:00' for Turkey"
+  type        = string
+  default     = null
+}
+
 ################################################################################
 # DB Authentication & Access
 ################################################################################

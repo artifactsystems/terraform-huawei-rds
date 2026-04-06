@@ -32,6 +32,7 @@ resource "huaweicloud_rds_instance" "this" {
   period_unit                        = var.period_unit
   period                             = var.period
   auto_renew                         = var.auto_renew
+  time_zone                          = var.time_zone
 
   db {
     type     = local.db_type
